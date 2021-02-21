@@ -1,0 +1,90 @@
+.cont {
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+.titlebox {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: calc(100vw - 10vw);
+  height: calc(100vh - 10vw);
+  border: 1px solid black;
+  text-align: center;
+  margin: 0vw;
+}
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 5vw;
+}
+.subtitle {
+  position: absolute;
+  top: calc(50% + 4vw);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 3vw;
+}
+
+/* A */
+a:link { text-decoration: none; color: black; }
+a:visited { text-decoration: none; color: black; }
+a:hover { text-decoration: none; color: black; }
+a:active { text-decoration: none; color: black; }
+
+/* IMG */
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* TOP MENU */
+.top_menu {
+  position: absolute;
+  font-size: 1vw;
+  top: 0vw;
+  right: 0vw;
+  margin: 2vw 4vw 2vw 1vw;
+}
+
+.top_photo {
+  position: absolute;
+  width: 1vw;
+  height: 1vw;
+  top: 0vw;
+  right: 0vw;
+  margin: 0.25vw -1.5vw 2vw 1vw;
+  object-fit: contain;
+}
+
+
+/* BOTTOM MENU */
+.bottom_menu {
+  position: absolute;
+  font-size: 1vw;
+  bottom: 0vw;
+  left: 0vw;
+  margin: 2vw 1vw 2vw 1vw;
+}
+
+@keyframes open_bottom {
+  from {border-bottom: 1px solid white;}
+  to {border-bottom: 1px solid black;}
+}
+
+.bottom_button {
+    margin-left: 2vw;
+}
+.bottom_button:hover {
+    margin-left: 2vw;
+    border-bottom: 1px solid black;
+    animation: open_bottom 0.5s 1;
+    color: black;
+}
