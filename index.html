@@ -10,6 +10,16 @@ a:visited { text-decoration: none; color: black; }
 a:hover { text-decoration: none; color: black; }
 a:active { text-decoration: none; color: black; }
 
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
 /* IMG */
 img {
     max-width: 100%;
@@ -178,7 +188,7 @@ function change_page(num) {
 <body onload="change_page(0)">
 <div class="cont">
 <div class="box">
-    <div class="homepage_title">
+    <div class="homepage_title noselect">
         <c> <b> <span class="title"> RED LEMON </span> <br> </b>
         <span class="subtitle"> ART & CRAFT </span> </c>
     </div>
@@ -212,10 +222,10 @@ function change_page(num) {
     </div>
     
     <div class="bottom_menu">
-        <a><span class="bottom_button" onclick="change_page(0)"> Home </span> </a>
-        <a><span class="bottom_button" onclick="change_page(1)"> Chi Siamo </span> </a>
-        <a><span class="bottom_button" onclick="change_page(2)"> Art & Craft, Progetti </span> </a>
-        <a><span class="bottom_button" onclick="change_page(3)"> Shop </span> </a>
+        <a><span class="bottom_button noselect" onclick="change_page(0)"> Home </span> </a>
+        <a><span class="bottom_button noselect" onclick="change_page(1)"> Chi Siamo </span> </a>
+        <a><span class="bottom_button noselect" onclick="change_page(2)"> Art & Craft, Progetti </span> </a>
+        <a><span class="bottom_button noselect" onclick="change_page(3)"> Shop </span> </a>
     </div>
     
     <div class="top_menu">
