@@ -150,9 +150,11 @@ img {
 
 <script>
 
+function set_height () {
+    document.body.style.height = window.innerHeight;
+}
 
 function change_page(num) {
-    console.log(num)
     var homepage_title = document.getElementsByClassName("homepage_title")[0];
     var box_content = document.getElementsByClassName("box_content");
     if (num == 0) {
@@ -161,7 +163,6 @@ function change_page(num) {
         homepage_title.style.visibility = "hidden";
     }
     Array.prototype.forEach.call(box_content, box => {
-        console.log(box.id);
         if (box.id == num) {
             box.style.visibility = "visible";
         } else {
@@ -173,7 +174,7 @@ function change_page(num) {
 
 </head>
 
-<body onload="change_page(0)">
+<body onload="change_page(0); set_height()">
 <div class="cont">
 <div class="box">
     <div class="homepage_title">
