@@ -1,0 +1,67 @@
+<html>
+<head>
+<title> Red Lemon - Art and Craft </title>
+
+<link rel="stylesheet" href="style.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> 
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet"> 
+
+<script>
+
+function change_page(num) {
+    var homepage_title = document.getElementsByClassName("homepage_title")[0];
+    var box_content = document.getElementsByClassName("box_content");
+    if (num == 0) {
+        homepage_title.style.visibility = "visible";
+    } else {
+        homepage_title.style.visibility = "hidden";
+    }
+    Array.prototype.forEach.call(box_content, box => {
+        if (box.id == num) {
+            box.style.visibility = "visible";
+        } else {
+            box.style.visibility = "hidden";
+        }
+    });
+}
+
+
+</script>
+
+</head>
+
+<body onload="change_page(0)">
+<div class="cont">
+<div class="box">
+    <div class="homepage_title noselect">
+        <c> <b> <span class="title"> RED LEMON </span> <br> </b>
+        <span class="subtitle"> ART & CRAFT </span> </c>
+    </div>
+    
+    <img src="imgs\bags\1.jpg">
+    
+    <div class="bottom_menu">
+        <a><span class="bottom_button noselect" onclick="change_page(0)"> Home </span> </a>
+        <a><span class="bottom_button noselect" onclick="change_page(1)"> Chi Siamo </span> </a>
+        <a><span class="bottom_button noselect" onclick="change_page(2)"> Art & Craft, Progetti </span> </a>
+        <a><span class="bottom_button noselect" onclick="change_page(3)"> Shop </span> </a>
+    </div>
+    
+    <div class="top_menu">
+        <a href="https://www.instagram.com/redlemon.art.craft/">
+            <span class="bottom_button"> 
+                @redlemon.art.craft 
+                <div class="top_photo"> </div>
+            </span> 
+        </a>
+    </div>
+</div>
+</div>
+</body>
+
+</html>
