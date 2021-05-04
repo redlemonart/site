@@ -13,21 +13,74 @@
 
 <script>
 
+function move (elem, dir) {
+    let pos = 0;
+    let id = setInterval(frame, 5);
+    bound = 30;
+    elem.style.visibility = "visible";
+    function frame() {
+        if (pos >= bound) {
+            if (dir == 1) {
+                elem.style.opacity = 0;
+                elem.style.visibility = "hidden";
+            } else {
+                elem.style.opacity = 1;
+            }
+            //elem.style.right = 0 + 'px';
+            clearInterval(id);
+        } else {
+            pos += pos + 1;
+            if (pos > bound) pos = bound;
+            
+            let opacity = (pos/bound);
+            if (dir == 1) { opacity = 1 - opacity; }
+            elem.style.opacity = opacity;
+            
+            let amt = pos*dir;
+            if (dir == 1) amt += 30;
+            //elem.style.right = amt + 'px';
+        }
+    }
+} 
+
+var init = true;
+var last = -1;
 function change_page(num) {
     var homepage_title = document.getElementsByClassName("homepage_title")[0];
     var box_content = document.getElementsByClassName("box_content");
-    if (num == 0) {
+    
+    if (init) {
+        init = false;
+        homepage_title.style.opacity = 1;
         homepage_title.style.visibility = "visible";
-    } else {
-        homepage_title.style.visibility = "hidden";
+        Array.prototype.forEach.call(box_content, box => {
+            if (box.id == 0) { 
+                box.style.opacity = 1;
+                box.style.visibility = "visible";
+            } else { 
+                box.style.opacity = 0;
+                box.style.visibility = "hidden";
+            }
+        });
+        last = num;
+        return;
     }
-    Array.prototype.forEach.call(box_content, box => {
-        if (box.id == num) {
-            box.style.visibility = "visible";
-        } else {
-            box.style.visibility = "hidden";
+    
+    var refresh = false;
+    if (last != num) { refresh = true; }
+    
+    if (refresh) {
+        if (num == 0) {
+            move(homepage_title, -1);
+        } else if (last == 0) {
+            move(homepage_title, 1);
         }
-    });
+        Array.prototype.forEach.call(box_content, box => {
+            if (box.id == num) { move(box, -1); } 
+            else if (box.id == last) { move(box, 1); }
+        });
+    }
+    last = num;
 }
 </script>
 
