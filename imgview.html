@@ -13,43 +13,85 @@
 
 <script>
 
-function change_page(num) {
-    var homepage_title = document.getElementsByClassName("homepage_title")[0];
-    var box_content = document.getElementsByClassName("box_content");
-    if (num == 0) {
-        homepage_title.style.visibility = "visible";
-    } else {
-        homepage_title.style.visibility = "hidden";
-    }
-    Array.prototype.forEach.call(box_content, box => {
-        if (box.id == num) {
-            box.style.visibility = "visible";
-        } else {
-            box.style.visibility = "hidden";
-        }
-    });
-}
+var index = 1;
 
+function change_img(delta) {
+    let url = window.location.href;
+    let dirs = url.split('/');
+    let last = dirs[dirs.length-1];
+    let segs = last.split('#');
+    let page = segs[1];
+    
+    let bound = 82;
+    
+    let qua = [
+        "acrilico su legno, con particolari in balsa, piccole dimensioni.",
+        "da sinistra: Fluid Tree, acrilico su legno, sfondo bianco, figura in blu e nero, dimissioni 30x60 cm. Fluid Tree, acrilico su legno, con base a nudo, dimensioni 30x60 cm.",
+        "Fluid Tree, dimensioni 30x60 cm, acrilico su base legno. Da sinistra: sfondo blu, figura bianca e azzurra. Sfondo rosso figura rossa e marrone. Base a nudo, figura multicolore.",
+        "ai lati Fluid Tree 30x60 cm acrilico su base legno. In centro Fluid tree con sfondo bianco, figura in giallo, con particolari in balsa, 30x50, acrilico su legno.",
+        "Tavolette di piccole dimensioni. Differenti basi: balsa o ceramica, acrilico.",
+        "Fluid Tree, 30x60 cm, acrilico su base legno, sfondo bianco figura in verde, con dettagli in foglia d'oro",
+        "Fluid Tree, 30x 60 cm, acrilico su tela",
+        "cartoline, cartoncino e acrilico, tecnica Fluid painting, reto lucido.",
+        "Fluid Painting, colore acrilico su disco di grammofono.",
+        "Fluid Painting, colore acrilico su disco di grammofono.",
+        "Fluid Painting, colore acrilico su disco di grammofono.",
+        "Grandi dimensioni, lastra in alluminio, acrilico e laminato di ferro, con strato protettivo in resina episodica."
+    ];
+    
+    let pel = [
+        [[ 1,  6], "Borsa modello classico, pelle marrone con particolari in pelle bianca, ampia pattina, doppia calamita, lunga tracolla. Sperimentare è sempre bello, ho accostato una pelle di un marrone rossastro e un bianco panna, riutilizzando vecchi scarti di una pelle ormai un po’ rovinata. Del risultato sono molto soddisfatta. Sugli ampi lati principali risaltano le originali decorazioni, che vengono riprese anche sulla tracolla. È molto ampia e leggera, comoda e versatile."],
+        [[ 7, 11], "Zaino con doppio filetto, spalline regolabili. Splendido design, perfette dimissioni per quaderni e borracce. Bicolore, di tinte naturali grande tasca sul davanti e una ancora più grande all’interno. Anche se in pelle, non è troppo pesante ed è ben bilanciato quando lo si tiene in spalla."],
+        [[12, 16], "Valigia con filetto e doppia cerniera, tracolla e manici rimovibili. È molto grande e spaziosa, personalmente la trovo molto comoda, è morbida e non troppo pesante. Sia i manici che la tracolla sono rimovibili a seconda delle propria necessità. Nera, i dettagli rosa pallido la rendono molto elegante, la forma è estradante sportiva. È un ottimo mix per tutte le tutte le occasioni."],
+        [[17, 21], "Modello molto semplice, sacca rettangolare con cerniera e fodera libera. Essenziale, nessuna tasca, sportiva con un tocco di eccentricità. Realizzata in due versioni e in due materiali diversi."],
+        [[22, 26], "Modello classico con calamita e tasca interna , tinta unita, di un bel blu profondo, maniglia e tracolla. Rettangolare, slanciata verso l’alto, non molto profonda. È uno dei primi modelli realizzati, infatti come nella tracolla ci sono parecchie ingenuità, ma nel colposo ha un bell’impatto."],
+        [[27, 30], "Borsa a secchiello, dettagli intrecciati, chiusura a corda. Accostamento di colore molto riuscito, il beje aiuta a far risaltare il colore giallo. Modello molto semplice ma grande e spazioso."],
+        [[31, 37], "Un design un po’ particolare e stravagante, tinta unita, tracolla molto lunga con molte possibilità di regolazione, pattina sagomata e tasca interna. Per la fora voluminosa che ha non troppo spaziosa."],
+    ];
+    
+    if (page == "paintings") {
+        bound = 13;
+        if (index < qua.length) {
+            document.getElementById("descr").innerHTML = qua[index];
+        }
+    }
+    
+    if (page == "bags") {
+        pel.forEach(e => {
+            if (e[0][0] <= index && index <= e[0][1]) {
+                document.getElementById("descr").innerHTML = e[1];
+            }
+        });
+    }
+    
+    index += delta;
+    if (index < 1) index = 1;
+    if (index > bound) index = bound;
+    document.getElementById("imgg").src = "imgs/"+page+"/"+index+".jpg";
+    document.getElementById("nav").innerHTML = index+"/"+bound;
+}
 
 </script>
 
 </head>
 
-<body onload="change_page(0)">
+<body onload="change_img(0)">
 <div class="cont">
 <div class="box">
-    <div class="homepage_title noselect">
-        <c> <b> <span class="title"> RED LEMON </span> <br> </b>
-        <span class="subtitle"> ART & CRAFT </span> </c>
+    
+    <div class="box_content">
+        <img id="imgg" src="imgs/bags/1.jpg" style="height:90%">
+        <br> <br>
+        <span id="descr">
+            ...
+        </span>
     </div>
     
-    <img src="imgs\bags\1.jpg">
-    
     <div class="bottom_menu">
-        <a><span class="bottom_button noselect" onclick="change_page(0)"> Home </span> </a>
-        <a><span class="bottom_button noselect" onclick="change_page(1)"> Chi Siamo </span> </a>
-        <a><span class="bottom_button noselect" onclick="change_page(2)"> Art & Craft, Progetti </span> </a>
-        <a><span class="bottom_button noselect" onclick="change_page(3)"> Shop </span> </a>
+        <a href="index.html"><span class="bottom_button noselect"> Home </span> </a>
+        <a><span class="bottom_button noselect" onclick="change_img(-1)"> Previous </span> </a>
+        <a><span class="bottom_button noselect" onclick="change_img(1)"> Next </span> </a>
+        <span id="nav" style="margin-left: 10px;"> 1/82 </span>
     </div>
     
     <div class="top_menu">
